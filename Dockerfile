@@ -21,9 +21,12 @@ RUN ldconfig
 # Configuration.
 RUN sed -i 's/\(CONFIG proxy.config.http.server_ports STRING\).*$/\1 80 443/g' /usr/local/etc/trafficserver/records.config
 
+# Expose ports.
 EXPOSE 80
 EXPOSE 443
 
-CMD ["/usr/local/bin/traffic_server"]
+# Copy startup script.
+COPY trafficserver-foreground /usr/local/bin/
 
-
+# Start!
+CMD ["trafficserver-foreground"]

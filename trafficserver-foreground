@@ -5,6 +5,13 @@ if [ -z "$TRAFFICSERVER_HOST" ]; then
 	exit 1
 fi
 
+# Enable cache inspector.
+if [ ! -z "$TRAFFICSERVER_DEBUG" ]; then
+	echo >&2 "Enabling debug mode"
+	echo "CONFIG proxy.config.http_ui_enabled INT 1" >> /usr/local/etc/trafficserver/records.config
+	echo "regex_map http://([a-z\-0-9\.]+)/trafficservercache/ http://{cache}" >> /usr/local/etc/trafficserver/remap.config
+fi
+
 # Add origin servers to remap config.
 echo "regex_map http://([a-z\-0-9\.]+) http://${TRAFFICSERVER_HOST}" >> /usr/local/etc/trafficserver/remap.config
 echo "regex_map https://([a-z\-0-9\.]+) https://${TRAFFICSERVER_HOST}" >> /usr/local/etc/trafficserver/remap.config

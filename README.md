@@ -2,7 +2,7 @@
 Docker configuration for running Apache Traffic Server (ATS).
 
 ## Usage
-`docker run -d --name trafficserver -p 80:80 -p 443:443 -e TRAFFICSERVER_HOST=10.11.12.13 -e TRAFFICSERVER_DEBUG=true eanushan/docker-trafficserver`
+`docker run -d --name trafficserver -p 80:80 -p 443:443 -e TRAFFICSERVER_HOST=10.11.12.13 -e TRAFFICSERVER_DEBUG=true eanushan/trafficserver`
 
 ## Configuration
 The following environment variables are available for configuration.
